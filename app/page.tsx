@@ -39,7 +39,7 @@ function OnboardingCard() {
   ];
   return (
     <section className="glass p-8">
-      <p className="eyebrow mb-2">How it works</p>
+      <p className="eyebrow mb-2" style={{ color: "var(--accent-1)", textTransform: "uppercase" }}>How it works</p>
       <h2 className="text-lg font-semibold tracking-tight mb-6">Click a topic on the map to begin</h2>
       <div className="grid gap-5 sm:grid-cols-3">
         {steps.map((s, i) => (
