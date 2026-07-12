@@ -13,8 +13,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "ReviseFlow",
-  description: "Never lose your learning flow.",
+  title: "ReviseFlow - Never lose your learning flow",
+  description:
+    "A local-first learning companion that maps what you learn, connects ideas, and quizzes you on what's fading.",
 };
 
 export default function RootLayout({
