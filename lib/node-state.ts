@@ -14,7 +14,10 @@
 
 export type NodeState = "Unstarted" | "Learning" | "Shaky" | "Mastered" | "Fading";
 
-// Tunables - recalibrated against seeded demo data (Phase 8).
+/**
+ * Number of days before a node decays from Mastered back to Fading.
+ * Calibrated based on typical spaced repetition drop-off rates.
+ */
 export const FADING_THRESHOLD_DAYS = 7;
 export const SUBSTANCE_THRESHOLD = 4; // dynamic facts needed to count as substantially studied
 
