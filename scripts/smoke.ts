@@ -1,5 +1,4 @@
 // Basic add -> wait -> profile -> search round-trip against Supermemory Local.
-// Per docs/INFRASTRUCTURE_SETUP.md §5. Run with: bun run scripts/smoke.ts
 import { sm } from "../lib/supermemory";
 
 async function main() {

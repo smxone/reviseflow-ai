@@ -1,4 +1,3 @@
-// Spike C (relationships) — MVP_FINAL_SPEC.md §B6.
 // Add memories across two genuinely related topics; call search.memories() and confirm the
 // engine surfaces the cross-topic link with usable strength. Run with: bun run scripts/spike-relationships.ts
 import { sm } from "../lib/supermemory";
@@ -37,7 +36,7 @@ async function main() {
   console.log("Waiting 8s for indexing...");
   await new Promise((r) => setTimeout(r, 8000));
 
-  // Query using ONLY page-replacement framing — see if the DSA-tagged caching memories surface.
+  // Query using ONLY page-replacement framing - see if the DSA-tagged caching memories surface.
   const result = await sm.search.memories({ q: "page replacement eviction policy which page to remove", containerTag: TAG });
   console.log("\n=== SEARCH.MEMORIES (query framed around page-replacement) ===");
   console.log(JSON.stringify(result, null, 2));

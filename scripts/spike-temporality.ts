@@ -1,4 +1,3 @@
-// Spike A (temporality) — MVP_FINAL_SPEC.md §B6.
 // Add a belief, then a contradicting correction; inspect how profile() vs
 // search.documents() expose the superseded fact. Run with: bun run scripts/spike-temporality.ts
 import { sm } from "../lib/supermemory";
@@ -24,7 +23,7 @@ async function main() {
 
   const correction = await sm.add({
     content:
-      "Correction: I was wrong earlier. LRU does NOT always outperform FIFO — in pathological cyclic access patterns, FIFO can actually outperform LRU. My earlier claim that LRU always wins was incorrect.",
+      "Correction: I was wrong earlier. LRU does NOT always outperform FIFO - in pathological cyclic access patterns, FIFO can actually outperform LRU. My earlier claim that LRU always wins was incorrect.",
     containerTag: TAG,
     metadata: {
       subjectId: "gate_os",
