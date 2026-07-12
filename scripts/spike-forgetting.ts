@@ -1,9 +1,8 @@
-// Spike B (forgetting/staleness) — MVP_FINAL_SPEC.md §B6.
 // Determine the real decay signal on the LOCAL engine: age field? static->dynamic->absent
 // demotion? explicit expiry? Run with: bun run scripts/spike-forgetting.ts
 //
 // Finding: memories.forget()/updateMemory({forgetAfter}) require the MEMORY id (the extracted
-// atomic fact, from profile().searchResults[].id), not the original document content — content-
+// atomic fact, from profile().searchResults[].id), not the original document content - content-
 // based matching 404s because the engine's extracted memory text differs from what we submitted.
 import { sm } from "../lib/supermemory";
 
@@ -22,13 +21,13 @@ async function main() {
   console.log("\n=== PROFILE after 4s (static/dynamic placement) ===");
   console.log(JSON.stringify(profile1.profile, null, 2));
 
-  // No forgetAfter set yet — confirm the fact persists unchanged with no organic decay over a further wait.
+  // No forgetAfter set yet - confirm the fact persists unchanged with no organic decay over a further wait.
   await new Promise((r) => setTimeout(r, 8000));
   const profile2 = await sm.profile({ containerTag: TAG, q: "round robin scheduling" });
   console.log("\n=== PROFILE after +8s more (checking for any organic staleness signal) ===");
   console.log(JSON.stringify(profile2.profile, null, 2));
 
-  const targetId = profile2.searchResults?.results?.[0]?.id;
+  const targetId = (profile2.searchResults?.results?.[0] as any)?.id;
   console.log("\ntarget memory id for expiry test:", targetId);
 
   // Explicit expiry: forgetAfter must be a future timestamp (validated server-side).
@@ -64,7 +63,7 @@ async function main() {
   await new Promise((r) => setTimeout(r, 4000));
 
   const profile3 = await sm.profile({ containerTag: TAG, q: "priority scheduling starvation aging" });
-  const forgetTargetId = profile3.searchResults?.results?.find((r: any) => r.memory.includes("aging"))?.id;
+  const forgetTargetId = (profile3.searchResults?.results?.find((r: any) => r.memory.includes("aging")) as any)?.id;
   console.log("\nforget() target id:", forgetTargetId);
 
   const forgotten = await sm.memories.forget({ containerTag: TAG, id: forgetTargetId, reason: "spike-b-explicit-forget-test" });
