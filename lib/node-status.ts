@@ -22,9 +22,13 @@ export interface NodeStatus {
   docs: NodeDoc[];
 }
 
+export function nodeMemoryFilter(nodeId: string) {
+  return { AND: [{ key: "nodeId", value: nodeId, filterType: "metadata" as const }] };
+}
+
 export async function getNodeStatus(node: RoadmapNode): Promise<NodeStatus> {
   const containerTag = containerTagFor(node.subjectId);
-  const nodeFilter = { AND: [{ key: "nodeId", value: node.id, filterType: "metadata" as const }] };
+  const nodeFilter = nodeMemoryFilter(node.id);
 
   const [profile, search] = await Promise.all([
     sm.profile({ containerTag, filters: nodeFilter }),
